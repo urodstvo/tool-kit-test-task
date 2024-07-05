@@ -1,0 +1,45 @@
+.button {
+    line-height: 18px;
+    font-size: 16px;
+    color: #1a1a1a;
+    padding: 4px;
+    border: none;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.3s,
+        color 0.3s;
+}
+
+.ghost {
+    background: transparent;
+
+    @media (prefers-color-scheme: light) {
+        & {
+            color: #1a1a1a;
+        }
+        &:hover {
+            background: rgba(26, 26, 26, 0.2);
+            color: #eee;
+        }
+    }
+
+    @media (prefers-color-scheme: dark) {
+        & {
+            color: #eee;
+        }
+        &:hover {
+            background: rgba(244, 244, 244, 0.5);
+            color: #1a1a1a;
+        }
+    }
+}
+
+.primary {
+    background: #2a2acd;
+
+    &:hover {
+        background: rgba(26, 26, 26, 0.1);
+    }
+}
