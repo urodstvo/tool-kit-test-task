@@ -1,0 +1,76 @@
+.card {
+    display: flex;
+    width: 1000px;
+    height: 40px;
+    gap: 40px;
+    align-items: center;
+
+    border-radius: 16px;
+
+    background-color: rgba(64, 64, 64, 0.5);
+
+    transition:
+        0.3s background-color,
+        0.4s box-shadow;
+    border: 4px solid transparent;
+
+    padding: 8px 16px;
+
+    cursor: auto;
+    backdrop-filter: blur(16px);
+}
+
+.repoLink {
+    color: #eee;
+
+    font-size: 16px;
+    line-height: 20px;
+    flex: 1;
+}
+
+.stars {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    background-color: #222;
+    color: #eee;
+
+    padding: 4px 16px;
+
+    border-radius: 8px;
+
+    &:hover {
+        background-color: #111;
+    }
+}
+
+.link {
+    text-decoration: none;
+}
+
+.starIcon {
+    transition: all 0.2s;
+    fill: transparent;
+
+    &:hover {
+        fill: #eee;
+    }
+}
+
+.date {
+    font-size: 16px;
+    line-height: 24px;
+    opacity: 0.85;
+
+    & span {
+        font-style: italic;
+    }
+}
