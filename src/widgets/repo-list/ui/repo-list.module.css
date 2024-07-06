@@ -1,0 +1,15 @@
+.section {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+
+    flex: 1;
+
+    gap: 40px;
+}
+
+.list {
+    flex: 1;
+
+    overflow-y: scroll;
+}
