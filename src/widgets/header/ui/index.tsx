@@ -8,7 +8,7 @@ import styles from './header.module.css';
 const BackBtn = () => {
     return (
         <Link to="/">
-            <Button className={styles.BackBtn} variant="ghost">
+            <Button className={styles.BackBtn} variant="ghost" tabIndex={-1}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"

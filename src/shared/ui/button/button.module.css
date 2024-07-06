@@ -17,25 +17,10 @@
 
 .ghost {
     background: transparent;
+    color: #eee;
 
-    @media (prefers-color-scheme: light) {
-        & {
-            color: var(--secondary-color);
-        }
-        &:hover {
-            background: var(--secondary-color-hover);
-            color: #eee;
-        }
-    }
-
-    @media (prefers-color-scheme: dark) {
-        & {
-            color: #eee;
-        }
-        &:hover {
-            background: rgba(244, 244, 244, 0.5);
-            color: #1a1a1a;
-        }
+    &:hover {
+        background: rgba(244, 244, 244, 0.1);
     }
 }
 

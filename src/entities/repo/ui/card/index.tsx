@@ -1,11 +1,11 @@
 import { Repository } from '@/shared/api';
 import { Button } from '@/shared/ui/button';
 import { ArrowRight } from '@/shared/ui/icons';
+import { StarIcon } from '@/shared/ui/icons/star';
 import { Link } from 'react-router-dom';
 
 import { formatDate } from '../../model';
 import styles from './repo-card.module.css';
-import { StarIcon } from './star';
 
 export const RepoCard = ({ id, stargazerCount, nameWithOwner, url, defaultBranchRef }: Repository) => {
     // @ts-ignore

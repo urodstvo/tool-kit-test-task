@@ -133,9 +133,10 @@
         line-height: 1.5;
         font-weight: 400;
 
-        color-scheme: light dark;
         color: rgba(255, 255, 255, 0.87);
         background-color: #242424;
+
+        color-scheme: dark;
 
         font-synthesis: none;
         text-rendering: optimizeLegibility;
@@ -149,13 +150,6 @@
         --secondary-color: #1a1a1a;
         --secondary-color-hover: rgba(26, 26, 26, 0.2);
         --secondary-color-transparent: rgba(26, 26, 26, 0.3);
-    }
-
-    @media (prefers-color-scheme: light) {
-        :root {
-            color: #213547;
-            background-color: #ffffff;
-        }
     }
 }
 
