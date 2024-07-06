@@ -1,0 +1,36 @@
+query repoSearch($query: String!, $after: String, $before: String, $first: Int, $last: Int) {
+    search(first: $first, last: $last, query: $query, type: REPOSITORY, after: $after, before: $before) {
+        repositoryCount
+        nodes {
+            ... on Repository {
+                id
+                name
+                nameWithOwner
+                updatedAt
+                stargazerCount
+                url
+                defaultBranchRef {
+                    target {
+                        ... on Commit {
+                            history(first: 1) {
+                                edges {
+                                    node {
+                                        ... on Commit {
+                                            committedDate
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        pageInfo {
+            hasNextPage
+            hasPreviousPage
+            startCursor
+            endCursor
+        }
+    }
+}

@@ -1,0 +1,35 @@
+query viewerRepo($first: Int, $last: Int, $before: String, $after: String, $privacy: RepositoryPrivacy) {
+    viewer {
+        repositories(first: $first, last: $last, after: $after, before: $before, privacy: $privacy) {
+            totalCount
+            nodes {
+                id
+                name
+                nameWithOwner
+                stargazerCount
+                url
+                defaultBranchRef {
+                    target {
+                        ... on Commit {
+                            history(first: 1) {
+                                edges {
+                                    node {
+                                        ... on Commit {
+                                            committedDate
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            pageInfo {
+                hasNextPage
+                hasPreviousPage
+                startCursor
+                endCursor
+            }
+        }
+    }
+}

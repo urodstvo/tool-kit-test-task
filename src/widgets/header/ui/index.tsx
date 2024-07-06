@@ -1,30 +1,9 @@
-import { useSearchQueryStore } from '@/shared/store';
+import { RepoSearch } from '@/features/repo-search';
 import { Button } from '@/shared/ui/button';
-import { Input } from '@/shared/ui/input';
 import { useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import styles from './header.module.css';
-
-const SearchInput = () => {
-    const { searchQuery, actions } = useSearchQueryStore();
-
-    return (
-        <div style={{ position: 'relative' }}>
-            <Input
-                name="search-repo-input"
-                onChange={(e) => actions.setSearchQuery(e.target.value)}
-                placeholder="Type to search"
-                value={searchQuery}
-            />
-            {!!searchQuery && (
-                <Button variant="ghost" className={styles.ClearInputBtn} onClick={() => actions.setSearchQuery('')}>
-                    &#10006;
-                </Button>
-            )}
-        </div>
-    );
-};
 
 const BackBtn = () => {
     return (
@@ -54,7 +33,5 @@ export const Header = () => {
 
     const isHomePage = useMemo(() => pathname === '/', [pathname]);
 
-    return (
-        <header className={isHomePage ? styles.isHomePage : ''}>{isHomePage ? <SearchInput /> : <BackBtn />}</header>
-    );
+    return <header className={isHomePage ? styles.isHomePage : ''}>{isHomePage ? <RepoSearch /> : <BackBtn />}</header>;
 };
