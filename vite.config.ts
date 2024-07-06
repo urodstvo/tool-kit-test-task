@@ -1,4 +1,5 @@
 import react from '@vitejs/plugin-react-swc';
+import autoprefixer from 'autoprefixer';
 import * as path from 'path';
 import { defineConfig } from 'vite';
 
@@ -8,4 +9,9 @@ export default defineConfig({
         alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
     },
     plugins: [react()],
+    css: {
+        postcss: {
+            plugins: [autoprefixer({})],
+        },
+    },
 });
