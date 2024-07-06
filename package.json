@@ -4,24 +4,34 @@
     "version": "0.0.0",
     "type": "module",
     "scripts": {
-        "dev": "vite",
+        "dev": "vite --port 3000",
         "build": "tsc -b && vite build",
         "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
         "preview": "vite preview",
-        "generate": "graphql-codegen",
-        "predev": "yarn generate"
+        "generate": "graphql-codegen -r dotenv/config"
     },
     "dependencies": {
         "@apollo/client": "^3.10.8",
+        "@graphql-typed-document-node/core": "^3.2.0",
         "graphql": "^16.9.0",
+        "lodash.debounce": "^4.0.8",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
         "react-router-dom": "^6.24.1",
         "zustand": "^4.5.4"
     },
     "devDependencies": {
+        "@graphql-codegen/add": "^5.0.3",
         "@graphql-codegen/cli": "^5.0.2",
+        "@graphql-codegen/client-preset": "^4.3.2",
+        "@graphql-codegen/near-operation-file-preset": "^3.0.0",
+        "@graphql-codegen/typescript": "^4.0.9",
+        "@graphql-codegen/typescript-operations": "^4.2.3",
+        "@graphql-codegen/typescript-react-apollo": "^4.3.0",
+        "@graphql-codegen/typescript-resolvers": "^4.2.1",
+        "@graphql-eslint/eslint-plugin": "^3.20.1",
         "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+        "@types/lodash.debounce": "^4.0.9",
         "@types/node": "^20.14.9",
         "@types/react": "^18.3.3",
         "@types/react-dom": "^18.3.0",
@@ -31,6 +41,7 @@
         "eslint": "^8.57.0",
         "eslint-plugin-react-hooks": "^4.6.2",
         "eslint-plugin-react-refresh": "^0.4.7",
+        "ts-node": "^10.9.2",
         "typescript": "^5.2.2",
         "vite": "^5.3.1"
     }

@@ -6,11 +6,14 @@ module.exports = {
         'plugin:@typescript-eslint/recommended',
         'plugin:react-hooks/recommended',
         'plugin:@tanstack/eslint-plugin-query/recommended',
+        'prettier',
+        'prettier/react',
     ],
     ignorePatterns: ['dist', '.eslintrc.cjs'],
     parser: '@typescript-eslint/parser',
-    plugins: ['react-refresh'],
+    plugins: ['react-refresh', '@graphql-eslint'],
     rules: {
         'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+        'no-console': 0,
     },
 };

@@ -1,0 +1,26 @@
+overwrite: true
+schema:
+    - ${VITE_API_URL}:
+          headers:
+              User-Agent: 'urodstvo'
+              Authorization: 'Bearer ${VITE_AUTH_TOKEN}'
+documents: './src/**/*.gql'
+config:
+    content: ${API_GENCOMMENT}
+    withHooks: true
+    skipTypename: false
+generates:
+    src/:
+        preset: near-operation-file
+        presetConfig:
+            extension: .gen.ts
+            baseTypesPath: shared/api/graphql.gen.ts
+        plugins:
+            - add
+            - typescript-operations
+            - typescript-react-apollo
+
+    src/shared/api/graphql.gen.ts:
+        plugins:
+            - add
+            - typescript
