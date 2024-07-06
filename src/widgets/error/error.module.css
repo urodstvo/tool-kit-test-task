@@ -1,0 +1,29 @@
+.error {
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+    gap: 16px;
+}
+
+.button {
+    font-weight: 400;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: underline;
+}
+
+h1 {
+    font-size: 48px;
+    line-height: 64px;
+    font-weight: bold;
+}
+
+p {
+    font-size: 16px;
+    line-height: 20px;
+
+    opacity: 0.8;
+}

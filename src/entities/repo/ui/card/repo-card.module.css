@@ -26,6 +26,8 @@
     font-size: 16px;
     line-height: 20px;
     flex: 1;
+
+    max-width: 300px;
 }
 
 .stars {
@@ -33,6 +35,8 @@
     align-items: center;
 
     gap: 8px;
+
+    max-width: 100px;
 }
 
 .button {
@@ -69,6 +73,7 @@
     font-size: 16px;
     line-height: 24px;
     opacity: 0.85;
+    flex: 1;
 
     & span {
         font-style: italic;

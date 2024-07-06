@@ -1,10 +1,14 @@
 import { formatDate } from '@/entities/repo';
 import { useRepoIdSearchQuery } from '@/features/repo-search';
 import { StarIcon } from '@/shared/ui/icons';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import styles from './repo-page.module.css';
+
+const Error = () => {
+    return <p style={{ textAlign: 'center' }}>An error occurred while retrieving repository data.</p>;
+};
 
 export default function Repo() {
     const { id } = useParams();
@@ -12,10 +16,6 @@ export default function Repo() {
     const repoQuery = useRepoIdSearchQuery({
         variables: { id: id as string },
     });
-
-    useEffect(() => {
-        if (repoQuery.error) throw new Error('An error occurred while retrieving repository data.');
-    }, [repoQuery.error]);
 
     const { data, lastCommitDate } = useMemo(() => {
         const data = repoQuery.data?.node?.__typename === 'Repository' ? repoQuery.data.node : null;
@@ -31,7 +31,9 @@ export default function Repo() {
         };
     }, [repoQuery.data]);
 
-    if (repoQuery.loading) return <div>Loading...</div>;
+    if (repoQuery.loading) return <p style={{ textAlign: 'center' }}>Loading...</p>;
+
+    if (repoQuery.error) return <Error />;
     return (
         <section className={styles.section}>
             <div className={styles.ownerInfo}>

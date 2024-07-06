@@ -8,20 +8,26 @@ import { formatDate } from '../../model';
 import styles from './repo-card.module.css';
 
 export const RepoCard = ({ id, stargazerCount, nameWithOwner, url, defaultBranchRef }: Repository) => {
-    // @ts-ignore
+    // @ts-expect-error Code Generation Issue
     const lastCommitDate = defaultBranchRef?.target?.history.edges[0].node.committedDate;
-
+    const formatted = formatDate(lastCommitDate);
     return (
         <article className={styles.card}>
+            <div className={styles.stars}>
+                <StarIcon className={styles.starIcon} />
+                <span>{stargazerCount}</span>
+            </div>
             <a href={url} target="_blank" className={styles.repoLink}>
                 {nameWithOwner.split('/').join(' / ')}
             </a>
-            <div className={styles.stars}>
-                <span>{stargazerCount}</span>
-                <StarIcon className={styles.starIcon} />
-            </div>
             <div className={styles.date}>
-                Last Commit at <span>{formatDate(lastCommitDate)}</span>
+                {formatted !== null ? (
+                    <>
+                        Last Commit at <span>{formatted}</span>
+                    </>
+                ) : (
+                    <>No commits yet</>
+                )}
             </div>
             <Link to={`/repo/${id}`} className={styles.link}>
                 <Button className={styles.button}>

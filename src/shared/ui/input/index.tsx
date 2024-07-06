@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 
 import styles from './input.module.css';
 
-type InputProps = {} & React.ComponentProps<'input'>;
+type InputProps = React.ComponentProps<'input'>;
 
 /**
  * @ui Input компонент

@@ -15,7 +15,7 @@ export const SearchList = () => {
     const total = useSearchQueryStore((state) => state.total);
     const actions = useSearchQueryStore((state) => state.actions);
 
-    const [vars, setVars] = useState<{}>({});
+    const [vars, setVars] = useState<object>({});
 
     const pageWithRequest = useRef(page - (page % 5));
 
@@ -33,7 +33,7 @@ export const SearchList = () => {
         actions.setCursor(searchQuery.data.search.pageInfo.startCursor, searchQuery.data?.search.pageInfo.endCursor);
 
         actions.setTotal(Math.ceil((searchQuery.data?.search.repositoryCount || 0) / 10));
-    }, [searchQuery.data, searchQuery.previousData, repos]);
+    }, [searchQuery.data, searchQuery.previousData, repos]); // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         if (page === 0) setVars({});

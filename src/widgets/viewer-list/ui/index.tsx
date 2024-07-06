@@ -15,7 +15,7 @@ export const ViewerList = () => {
     const total = useSearchQueryStore((state) => state.total);
     const actions = useSearchQueryStore((state) => state.actions);
 
-    const [vars, setVars] = useState<{}>({});
+    const [vars, setVars] = useState<object>({});
 
     const viewerQuery = useViewerRepoQuery({
         variables: { first: 50, ...vars },
@@ -35,7 +35,7 @@ export const ViewerList = () => {
         );
 
         actions.setTotal(Math.ceil((viewerQuery.data?.viewer.repositories.totalCount || 0) / 10));
-    }, [viewerQuery.data, viewerQuery.previousData, repos]);
+    }, [viewerQuery.data, viewerQuery.previousData, repos]); // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         if (page === 0) setVars({});

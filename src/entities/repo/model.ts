@@ -1,11 +1,17 @@
 export const formatDate = (date: string) => {
-    const updatedAtDate = new Date(date);
-    const day = String(updatedAtDate.getDate()).padStart(2, '0');
-    const month = String(updatedAtDate.getMonth() + 1).padStart(2, '0');
-    const year = updatedAtDate.getFullYear();
+    try {
+        const updatedAtDate = new Date(date);
 
-    const hour = String(updatedAtDate.getHours()).padStart(2, '0');
-    const minute = String(updatedAtDate.getMinutes()).padStart(2, '0');
+        const formatter = new Intl.DateTimeFormat('ru', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+        });
 
-    return `${day}.${month}.${year} ${hour}:${minute}`;
+        return formatter.format(updatedAtDate);
+    } catch {
+        return null;
+    }
 };

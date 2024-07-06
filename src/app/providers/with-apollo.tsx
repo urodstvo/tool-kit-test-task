@@ -36,6 +36,6 @@ const client = new ApolloClient({
 /**
  *  Инициализация подключения apollo для работы с API
  */
-export const withApollo = (component: React.ReactNode) => () => (
-    <ApolloProvider client={client}>{component}</ApolloProvider>
+export const WithApolloProvider = ({ children }: { children: React.ReactNode }) => (
+    <ApolloProvider client={client}>{children}</ApolloProvider>
 );

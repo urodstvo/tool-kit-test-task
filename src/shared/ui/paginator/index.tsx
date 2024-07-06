@@ -39,7 +39,7 @@ export const Paginator = ({ total, value, onChange, disabled, showWithOnePage }:
 
     useEffect(() => {
         onChange(page);
-    }, [page]);
+    }, [page, onChange]);
 
     useEffect(() => {
         setPage(value);
