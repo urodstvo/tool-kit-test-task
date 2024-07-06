@@ -9,6 +9,7 @@ type PaginatorProps = {
     onChange: (value: number) => void;
     total: number;
     disabled?: boolean;
+    showWithOnePage?: boolean;
 };
 
 const getPaginationArray = (page: number, total: number) => {
@@ -28,7 +29,7 @@ const getPaginationArray = (page: number, total: number) => {
     return arr;
 };
 
-export const Paginator = ({ total, value, onChange, disabled }: PaginatorProps) => {
+export const Paginator = ({ total, value, onChange, disabled, showWithOnePage }: PaginatorProps) => {
     const [page, setPage] = useState<number>(value);
     const [displayedArray, setDisplayedArray] = useState<Array<number | '...'>>([]);
 
@@ -46,7 +47,7 @@ export const Paginator = ({ total, value, onChange, disabled }: PaginatorProps) 
 
     return (
         <div className={styles.paginator}>
-            {total > 1 && (
+            {((showWithOnePage && total < 2) || total > 1) && (
                 <>
                     {total > 5 && (
                         <button

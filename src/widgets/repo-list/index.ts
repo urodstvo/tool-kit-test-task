@@ -1,1 +1,1 @@
-export { RepoList } from './ui/';
+export { SearchList } from './ui/';

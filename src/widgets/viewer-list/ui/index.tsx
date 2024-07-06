@@ -1,13 +1,13 @@
 import { RepoCard } from '@/entities/repo';
-import { useRepoSearchQuery } from '@/features/repo-search';
+import { useViewerRepoQuery } from '@/features/repo-search';
 import { Repository } from '@/shared/api';
 import { useSearchQueryStore } from '@/shared/store';
 import { Paginator } from '@/shared/ui/paginator';
 import { useEffect, useRef, useState } from 'react';
 
-import styles from './search-list.module.css';
+import styles from './viewer-list.module.css';
 
-export const SearchList = () => {
+export const ViewerList = () => {
     const query = useSearchQueryStore((state) => state.query);
     const page = useSearchQueryStore((state) => state.page);
     const cursor = useSearchQueryStore((state) => state.cursor);
@@ -17,23 +17,25 @@ export const SearchList = () => {
 
     const [vars, setVars] = useState<{}>({});
 
-    const pageWithRequest = useRef(page - (page % 5));
-
-    const searchQuery = useRepoSearchQuery({
-        variables: { query, first: 50, ...vars },
-        skip: query === '',
-        notifyOnNetworkStatusChange: true,
+    const viewerQuery = useViewerRepoQuery({
+        variables: { first: 50, ...vars },
+        skip: query !== '',
     });
 
+    const pageWithRequest = useRef(page - (page % 5));
+
     useEffect(() => {
-        if (!searchQuery.previousData && repos.length > 0) return;
-        if (!searchQuery.data) return;
+        if (!viewerQuery.previousData && repos.length > 0) return;
+        if (!viewerQuery.data) return;
 
-        actions.setRepos((searchQuery.data.search.nodes as Repository[]) || []);
-        actions.setCursor(searchQuery.data.search.pageInfo.startCursor, searchQuery.data?.search.pageInfo.endCursor);
+        actions.setRepos((viewerQuery.data.viewer.repositories.nodes as Repository[]) || []);
+        actions.setCursor(
+            viewerQuery.data.viewer.repositories.pageInfo.startCursor,
+            viewerQuery.data?.viewer.repositories.pageInfo.endCursor,
+        );
 
-        actions.setTotal(Math.ceil((searchQuery.data?.search.repositoryCount || 0) / 10));
-    }, [searchQuery.data, searchQuery.previousData, repos]);
+        actions.setTotal(Math.ceil((viewerQuery.data?.viewer.repositories.totalCount || 0) / 10));
+    }, [viewerQuery.data, viewerQuery.previousData, repos]);
 
     useEffect(() => {
         if (page === 0) setVars({});
@@ -65,11 +67,11 @@ export const SearchList = () => {
         <section className={styles.section}>
             <div className={styles.listHeader}>
                 <h1>Repository List </h1>
-                <p>Repositories found: {searchQuery.data?.search.repositoryCount}</p>
+                <p>Repositories found: {viewerQuery.data?.viewer.repositories.totalCount}</p>
             </div>
-            {searchQuery.loading && !searchQuery.data && <div>Loading...</div>}
-            {searchQuery.error && <div>Error</div>}
-            {!!repos.length && !!query.length && !searchQuery.loading && (
+            {viewerQuery.loading && !viewerQuery.data && <div>Loading...</div>}
+            {viewerQuery.error && <div>Error</div>}
+            {repos.length > 0 && !viewerQuery.loading && (
                 <ul className={styles.list}>
                     {repos.slice((page * 10) % 50, ((page * 10) % 50) + 10).map((repo) => (
                         <li key={repo.id}>
@@ -80,7 +82,7 @@ export const SearchList = () => {
             )}
             <Paginator
                 total={total}
-                disabled={searchQuery.loading}
+                disabled={viewerQuery.loading}
                 value={page}
                 onChange={(value) => actions.setPage(value)}
             />
