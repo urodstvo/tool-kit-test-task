@@ -1,3 +1,4 @@
+/// <reference types="vitest/globals" />
 import { act } from '@testing-library/react';
 import * as zustand from 'zustand';
 
