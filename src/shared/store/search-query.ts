@@ -25,6 +25,8 @@ type Actions = {
     };
 };
 
+export type SearchQueryStore = State & Actions;
+
 const initialValue = {
     query: '',
     repos: [],

@@ -1,0 +1,26 @@
+{
+    "id": "R_kgDOJWC2KQ",
+    "name": "coursework",
+    "nameWithOwner": "urodstvo/coursework",
+    "stargazerCount": 0,
+    "url": "https://github.com/urodstvo/coursework",
+    "defaultBranchRef": {
+        "target": {
+            "history": {
+                "edges": [
+                    {
+                        "node": {
+                            "committedDate": "2023-06-08T08:44:03Z",
+                            "__typename": "Commit"
+                        },
+                        "__typename": "CommitEdge"
+                    }
+                ],
+                "__typename": "CommitHistoryConnection"
+            },
+            "__typename": "Commit"
+        },
+        "__typename": "Ref"
+    },
+    "__typename": "Repository"
+}

@@ -1,12 +1,12 @@
-import { ArrowLeft } from '@/shared/ui/icons/arrow-left';
-import { ArrowRight } from '@/shared/ui/icons/arrow-right';
+import { ArrowLeft } from '@/shared/ui/icons';
+import { ArrowRight } from '@/shared/ui/icons';
 import { useEffect, useState } from 'react';
 
 import styles from './paginator.module.css';
 
 type PaginatorProps = {
     value: number;
-    onChange: (value: number) => void;
+    onChange?: (value: number) => void;
     total: number;
     disabled?: boolean;
     showWithOnePage?: boolean;
@@ -38,7 +38,7 @@ export const Paginator = ({ total, value, onChange, disabled, showWithOnePage }:
     }, [page, total]);
 
     useEffect(() => {
-        onChange(page);
+        if (onChange) onChange(page);
     }, [page, onChange]);
 
     useEffect(() => {
@@ -46,12 +46,12 @@ export const Paginator = ({ total, value, onChange, disabled, showWithOnePage }:
     }, [value]);
 
     return (
-        <div className={styles.paginator}>
+        <div className={styles.paginator} aria-label="paginator">
             {((showWithOnePage && total < 2) || total > 1) && (
                 <>
                     {total > 5 && (
                         <button
-                            disabled={value === 0 || disabled}
+                            disabled={page === 0 || disabled}
                             className={[styles.button, styles.arrow].join(' ')}
                             onClick={() => setPage((prev) => (prev > 1 ? prev - 1 : prev))}
                         >
@@ -68,7 +68,7 @@ export const Paginator = ({ total, value, onChange, disabled, showWithOnePage }:
                         else
                             return (
                                 <button
-                                    className={[styles.button, number === value + 1 && styles.active].join(' ')}
+                                    className={[styles.button, number === page + 1 ? styles.active : ''].join(' ')}
                                     key={number}
                                     onClick={() => setPage(number - 1)}
                                     disabled={disabled}
@@ -81,7 +81,7 @@ export const Paginator = ({ total, value, onChange, disabled, showWithOnePage }:
                         <button
                             className={[styles.button, styles.arrow].join(' ')}
                             onClick={() => setPage((prev) => (prev < total ? prev + 1 : prev))}
-                            disabled={value === total - 1 || disabled}
+                            disabled={page === total - 1 || disabled}
                         >
                             <ArrowRight />
                         </button>

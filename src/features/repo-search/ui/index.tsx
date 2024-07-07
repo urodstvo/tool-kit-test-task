@@ -6,6 +6,9 @@ import { useEffect, useMemo, useRef } from 'react';
 
 import styles from './search.module.css';
 
+/**
+ *  Component for search github repositories
+ */
 export const RepoSearch = () => {
     const query = useSearchQueryStore((state) => state.query);
     const actions = useSearchQueryStore((state) => state.actions);
@@ -21,13 +24,15 @@ export const RepoSearch = () => {
         const input = inputRef.current as HTMLInputElement;
         const button = buttonRef.current as HTMLButtonElement;
 
-        const handlerClick = () => {
+        const handleClick = () => {
             input.value = '';
             actions.setQuery('');
         };
 
-        button.addEventListener('click', handlerClick);
-        return () => button.removeEventListener('click', handlerClick);
+        button.addEventListener('click', handleClick);
+        return () => {
+            button.removeEventListener('click', handleClick);
+        };
     }, [actions]);
 
     return (
@@ -35,16 +40,16 @@ export const RepoSearch = () => {
             <Input
                 name="search-repo-input"
                 aria-label="Search Repositories"
-                onChange={debouncedSetQuery}
                 placeholder="Search Repositories"
                 defaultValue={query}
+                onChange={debouncedSetQuery}
                 ref={inputRef}
             />
             <Button
                 variant="ghost"
                 className={styles.ClearInputBtn}
                 ref={buttonRef}
-                style={{ display: query.length > 0 ? 'block' : 'none' }}
+                style={{ display: query.length ? 'block' : 'none' }}
             >
                 &#10006;
             </Button>

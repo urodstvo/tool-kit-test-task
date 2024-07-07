@@ -1,5 +1,6 @@
 import { formatDate } from '@/entities/repo';
 import { useRepoIdSearchQuery } from '@/features/repo-search';
+import { useTitle } from '@/shared/lib/browser';
 import { StarIcon } from '@/shared/ui/icons';
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
@@ -30,6 +31,8 @@ export default function Repo() {
             lastCommitDate,
         };
     }, [repoQuery.data]);
+
+    useTitle(`${data?.name} - Search GitHub Repositories`);
 
     if (repoQuery.loading) return <p style={{ textAlign: 'center' }}>Loading...</p>;
 
