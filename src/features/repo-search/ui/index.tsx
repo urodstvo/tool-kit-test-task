@@ -31,7 +31,7 @@ export const RepoSearch = () => {
     }, [actions]);
 
     return (
-        <div style={{ position: 'relative' }}>
+        <div className={styles.repoSearch}>
             <Input
                 name="search-repo-input"
                 aria-label="Search Repositories"

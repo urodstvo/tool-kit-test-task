@@ -4,7 +4,7 @@ import { ArrowRight } from '@/shared/ui/icons';
 import { StarIcon } from '@/shared/ui/icons/star';
 import { Link } from 'react-router-dom';
 
-import { formatDate } from '../../model';
+import { formatDate } from '../../model/model';
 import styles from './repo-card.module.css';
 
 export const RepoCard = ({ id, stargazerCount, nameWithOwner, url, defaultBranchRef }: Repository) => {
@@ -13,21 +13,25 @@ export const RepoCard = ({ id, stargazerCount, nameWithOwner, url, defaultBranch
     const formatted = formatDate(lastCommitDate);
     return (
         <article className={styles.card}>
-            <div className={styles.stars}>
-                <StarIcon className={styles.starIcon} />
-                <span>{stargazerCount}</span>
-            </div>
-            <a href={url} target="_blank" className={styles.repoLink}>
-                {nameWithOwner.split('/').join(' / ')}
-            </a>
-            <div className={styles.date}>
-                {formatted !== null ? (
-                    <>
-                        Last Commit at <span>{formatted}</span>
-                    </>
-                ) : (
-                    <>No commits yet</>
-                )}
+            <div className={styles.info}>
+                <div className={styles.cardHeader}>
+                    <div className={styles.stars}>
+                        <StarIcon className={styles.starIcon} />
+                        <span>{stargazerCount}</span>
+                    </div>
+                    <a href={url} target="_blank" className={styles.repoLink}>
+                        {nameWithOwner.split('/').join(' / ')}
+                    </a>
+                </div>
+                <div className={styles.date}>
+                    {formatted !== null ? (
+                        <>
+                            Last Commit at <span>{formatted}</span>
+                        </>
+                    ) : (
+                        <>No commits yet</>
+                    )}
+                </div>
             </div>
             <Link to={`/repo/${id}`} className={styles.link}>
                 <Button className={styles.button}>

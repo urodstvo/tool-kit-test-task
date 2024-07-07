@@ -64,3 +64,15 @@
         margin-left: 20px;
     }
 }
+
+@media (max-width: 400px) {
+    .arrow {
+        &:first-of-type {
+            margin-right: 0;
+        }
+
+        &:last-of-type {
+            margin-left: 0;
+        }
+    }
+}

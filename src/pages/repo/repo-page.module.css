@@ -123,3 +123,36 @@
     gap: 60px;
     align-items: flex-start;
 }
+
+@media (max-width: 1024px) {
+    .ownerInfo {
+        width: 300px;
+
+        & > div {
+            width: 300px;
+            height: 300px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .section {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .ownerInfo {
+        width: 280px;
+
+        & > div {
+            width: 280px;
+            height: 280px;
+        }
+    }
+
+    .repoInfo {
+        width: 280px;
+        padding: 0;
+    }
+}

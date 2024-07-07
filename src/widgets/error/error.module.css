@@ -15,15 +15,9 @@
     text-decoration: underline;
 }
 
-h1 {
+.h1 {
     font-size: 48px;
     line-height: 64px;
     font-weight: bold;
-}
-
-p {
-    font-size: 16px;
-    line-height: 20px;
-
-    opacity: 0.8;
+    text-align: center;
 }

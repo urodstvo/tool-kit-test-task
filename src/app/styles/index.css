@@ -89,6 +89,10 @@
         font: inherit;
         vertical-align: baseline;
     }
+
+    * {
+        box-sizing: border-box;
+    }
     /* HTML5 display-role reset for older browsers */
     article,
     aside,
@@ -162,6 +166,13 @@
         width: 1300px;
         padding: 0 40px;
         margin: 0 auto;
+
+        @media (max-width: 1300px) {
+            width: 100vw;
+            padding: 0 20px;
+
+            margin: 0;
+        }
     }
 
     header {

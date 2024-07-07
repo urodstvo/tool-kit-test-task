@@ -10,3 +10,20 @@
 
     border-radius: 4px;
 }
+
+.repoSearch {
+    position: relative;
+
+    width: 600px;
+
+    display: flex;
+    justify-content: center;
+
+    & > input {
+        flex: 1;
+    }
+
+    @media (max-width: 600px) {
+        width: 100%;
+    }
+}

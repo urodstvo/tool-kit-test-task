@@ -1,8 +1,7 @@
 .card {
     display: flex;
     width: 1000px;
-    height: 40px;
-    gap: 40px;
+    justify-content: space-between;
     align-items: center;
 
     border-radius: 16px;
@@ -27,7 +26,8 @@
     line-height: 20px;
     flex: 1;
 
-    max-width: 300px;
+    width: 300px;
+    text-overflow: ellipsis;
 }
 
 .stars {
@@ -36,7 +36,7 @@
 
     gap: 8px;
 
-    max-width: 100px;
+    width: 100px;
 }
 
 .button {
@@ -56,8 +56,16 @@
     }
 }
 
+.info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
 .link {
     text-decoration: none;
+    height: 100%;
 }
 
 .starIcon {
@@ -75,7 +83,77 @@
     opacity: 0.85;
     flex: 1;
 
+    min-width: 160px;
+    max-width: 300px;
+
     & span {
         font-style: italic;
+    }
+}
+
+.cardHeader {
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width: 1024px) {
+    .info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        flex: 1;
+    }
+    .link {
+        height: 100%;
+    }
+
+    .button {
+        height: 100%;
+    }
+
+    .date {
+        max-width: 100%;
+    }
+
+    .card {
+        flex: 1;
+        width: calc(100vw - 40px);
+
+        gap: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .button {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .link {
+        flex: 1;
+    }
+
+    .info {
+        flex-direction: column;
+    }
+
+    .cardHeader {
+        flex: 1;
+        width: 100%;
+        justify-content: space-between;
+        gap: initial;
+    }
+
+    .repoLink {
+        width: fit-content;
     }
 }
