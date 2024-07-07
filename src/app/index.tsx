@@ -1,11 +1,10 @@
-import { router } from '@/pages';
-import { RouterProvider } from 'react-router-dom';
+import { Router } from '@/pages';
 
 import { WithProviders } from './providers';
 import './styles/index.css';
 
 export const App = () => (
     <WithProviders>
-        <RouterProvider router={router} />
+        <Router />
     </WithProviders>
 );

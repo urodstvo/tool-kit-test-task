@@ -10,6 +10,7 @@ export default defineConfig({
     resolve: {
         alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
     },
+    base: '/tool-kit-test-task/',
     css: {
         postcss: {
             plugins: [autoprefixer({})],
